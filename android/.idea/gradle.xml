@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/awesome_notifications-0.7.0-beta.5/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/connectivity_plus-2.3.5/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/external_path-1.0.1/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/file_picker-4.6.1/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.19.2/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-12.0.0/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.7/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/open_file-3.2.1/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/package_info_plus-1.4.2/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.16/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/permission_handler_android-10.0.0/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/sqflite-2.0.3/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.17/android" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
