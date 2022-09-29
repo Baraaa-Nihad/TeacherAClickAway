@@ -18,6 +18,7 @@ import 'package:eschool_teacher/getx_controllers/image_picker_controller.dart';
 import '../../../data/models/RegisterTeacherModel.dart';
 import '../../../data/models/getTermsConditionModel.dart';
 import '../../../data/models/subjectListModel.dart';
+import '../../../data/repositories/settingsRepository.dart';
 
 class StepperScreen extends StatefulWidget {
   const StepperScreen({Key? key}) : super(key: key);
@@ -165,6 +166,8 @@ class _StepperScreenState extends State<StepperScreen> {
     // getData();
     futureMethod = getData();
 
+
+
     super.initState();
     _skillsTextController = TextEditingController();
     _firstNameTextController = TextEditingController();
@@ -181,6 +184,7 @@ class _StepperScreenState extends State<StepperScreen> {
     _leavingWorkTextController = TextEditingController();
     _experienceWorkTextController = TextEditingController();
   }
+
   @override
   void dispose() {
     _firstNameTextController.dispose();
@@ -1037,7 +1041,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-1
               if(subjectList.length > 0)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[0].name,
+                  translatedKey: subjectList[0].name!,
+                  translatedKeyAr: subjectList[0].nameAr!,
                   subjectValue: subject,
                   rangeValues: _currentRangeValues,
                   callBack: (bool value){
@@ -1059,7 +1064,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-12
               if(subjectList.length > 1)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[1].name,
+                  translatedKey: subjectList[1].name!,
+                  translatedKeyAr: subjectList[1].nameAr!,
                   subjectValue: subject1,
                   rangeValues: _currentRangeValues12,
                   callBack: (bool value){
@@ -1081,7 +1087,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-2
               if(subjectList.length > 2)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[2].name,
+                  translatedKey: subjectList[2].name!,
+                  translatedKeyAr: subjectList[2].nameAr!,
                   subjectValue: subject2,
                   callBack: (bool value){
                     setState(() {
@@ -1103,7 +1110,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-3
               if(subjectList.length > 3)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[3].name,
+                  translatedKey: subjectList[3].name!,
+                  translatedKeyAr: subjectList[3].nameAr!,
                   subjectValue: subject3,
                   callBack: (bool value){
                     setState(() {
@@ -1125,7 +1133,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-4
               if(subjectList.length > 4)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[4].name,
+                  translatedKey: subjectList[4].name!,
+                  translatedKeyAr: subjectList[4].nameAr!,
                   subjectValue: subject4,
                   callBackRange: (RangeValues values){
                     setState(() {
@@ -1147,7 +1156,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-5
               if(subjectList.length > 5)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[5].name,
+                  translatedKey: subjectList[5].name!,
+                  translatedKeyAr: subjectList[5].nameAr!,
                   subjectValue: subject5,
                   callBackRange: (RangeValues values){
                     setState(() {
@@ -1169,7 +1179,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-6
               if(subjectList.length > 6)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[6].name,
+                  translatedKey: subjectList[6].name!,
+                  translatedKeyAr: subjectList[6].nameAr!,
                   subjectValue: subject6,
                   callBack: (bool value){
                     setState(() {
@@ -1191,7 +1202,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-7
               if(subjectList.length > 7)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[7].name,
+                  translatedKey: subjectList[7].name!,
+                  translatedKeyAr: subjectList[7].nameAr!,
                   subjectValue: subject7,
                   callBack: (bool value){
                     setState(() {
@@ -1213,7 +1225,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-8
               if(subjectList.length > 8)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[8].name,
+                  translatedKey: subjectList[8].name!,
+                  translatedKeyAr: subjectList[8].nameAr!,
                   subjectValue: subject8,
                   callBackRange: (RangeValues values){
                     setState(() {
@@ -1235,7 +1248,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-9
               if(subjectList.length > 9)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[9].name,
+                  translatedKey: subjectList[9].name!,
+                  translatedKeyAr: subjectList[9].nameAr!,
                   subjectValue: subject9,
                   callBack: (bool value){
                     setState(() {
@@ -1257,7 +1271,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-10
               if(subjectList.length > 10)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[10].name,
+                  translatedKey: subjectList[10].name!,
+                  translatedKeyAr: subjectList[10].nameAr!,
                   subjectValue: subject10,
                   callBack: (bool value){
                     setState(() {
@@ -1279,7 +1294,8 @@ class _StepperScreenState extends State<StepperScreen> {
               /// subject-11
               if(subjectList.length > 11)
               ChooseSubjectAllData(
-                  translatedKey: subjectList[11].name,
+                  translatedKey: subjectList[11].name!,
+                  translatedKeyAr: subjectList[11].nameAr!,
                   subjectValue: subject11,
                   callBackRange: (RangeValues values){
                     setState(() {
@@ -1344,7 +1360,7 @@ class _StepperScreenState extends State<StepperScreen> {
                   ));
 
             case ConnectionState.done:
-            EasyLoading.dismiss();
+
               return Stepper(
                   physics: AlwaysScrollableScrollPhysics(),
                   type: StepperType.vertical,
@@ -1466,7 +1482,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 0)
     addTopic(
       topic: subject,
-      subjectId: subjectList[0].id,
+      subjectId: subjectList[0].id!,
       from: _currentRangeValues.start.toInt(),
       to: _currentRangeValues.end.toInt(),
       work: _work,
@@ -1476,7 +1492,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 1)
     addTopic(
       topic: subject1,
-      subjectId: subjectList[1].id,
+      subjectId: subjectList[1].id!,
       from: _currentRangeValues12.start.toInt(),
       to: _currentRangeValues12.end.toInt(),
       work: _work1,
@@ -1486,7 +1502,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 2)
     addTopic(
       topic: subject2,
-      subjectId: subjectList[2].id,
+      subjectId: subjectList[2].id!,
       from: _currentRangeValues2.start.toInt(),
       to: _currentRangeValues2.end.toInt(),
       work: _work2,
@@ -1496,7 +1512,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 3)
     addTopic(
       topic: subject3,
-      subjectId: subjectList[3].id,
+      subjectId: subjectList[3].id!,
       from: _currentRangeValues3.start.toInt(),
       to: _currentRangeValues3.end.toInt(),
       work: _work3,
@@ -1505,7 +1521,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 4)
     addTopic(
       topic: subject4,
-      subjectId: subjectList[4].id,
+      subjectId: subjectList[4].id!,
       from: _currentRangeValues4.start.toInt(),
       to: _currentRangeValues4.end.toInt(),
       work: _work4,
@@ -1515,7 +1531,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 5)
     addTopic(
       topic: subject5,
-      subjectId: subjectList[5].id,
+      subjectId: subjectList[5].id!,
       from: _currentRangeValues5.start.toInt(),
       to: _currentRangeValues5.end.toInt(),
       work: _work5,
@@ -1525,7 +1541,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 6)
     addTopic(
       topic: subject6,
-      subjectId: subjectList[6].id,
+      subjectId: subjectList[6].id!,
       from: _currentRangeValues6.start.toInt(),
       to: _currentRangeValues6.end.toInt(),
       work: _work6,
@@ -1535,7 +1551,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 7)
     addTopic(
       topic: subject7,
-      subjectId: subjectList[7].id,
+      subjectId: subjectList[7].id!,
       from: _currentRangeValues7.start.toInt(),
       to: _currentRangeValues7.end.toInt(),
       work: _work7,
@@ -1545,7 +1561,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 8)
     addTopic(
       topic: subject8,
-      subjectId: subjectList[8].id,
+      subjectId: subjectList[8].id!,
       from: _currentRangeValues8.start.toInt(),
       to: _currentRangeValues8.end.toInt(),
       work: _work8,
@@ -1555,7 +1571,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 9)
     addTopic(
       topic: subject9,
-      subjectId: subjectList[9].id,
+      subjectId: subjectList[9].id!,
       from: _currentRangeValues9.start.toInt(),
       to: _currentRangeValues9.end.toInt(),
       work: _work9,
@@ -1565,7 +1581,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 10)
     addTopic(
       topic: subject10,
-      subjectId: subjectList[10].id,
+      subjectId: subjectList[10].id!,
       from: _currentRangeValues10.start.toInt(),
       to: _currentRangeValues10.end.toInt(),
       work: _work10,
@@ -1575,7 +1591,7 @@ class _StepperScreenState extends State<StepperScreen> {
     if(subjectList.length > 11)
     addTopic(
       topic: subject11,
-      subjectId: subjectList[11].id,
+      subjectId: subjectList[11].id!,
       from: _currentRangeValues11.start.toInt(),
       to: _currentRangeValues11.end.toInt(),
       work: _work11,
@@ -1627,7 +1643,7 @@ class _StepperScreenState extends State<StepperScreen> {
       if (_checkPersonalData()) {
         if (_images()) {
           // Navigator.of(context).pushReplacementNamed(Routes.login);
-          EasyLoading.show(status: "Loading...") ;
+          EasyLoading.show(status: null) ;
           sendAPI();
 
         } else {
@@ -1676,6 +1692,7 @@ class _StepperScreenState extends State<StepperScreen> {
       'previous_work': '${_previousWorkTextController.text}',
       'previous_work_number': '${_previousWorkNumberTextController.text}',
       'p_work_place': '${_previousWorkPlaceTextController.text}',
+      // 'r_leaving_prev_job': '${_leavingWorkTextController.text != null && _leavingWorkTextController.text != ''  ? _leavingWorkTextController.text : "-"}',
       if(_workThere == 'no') 'r_leaving_prev_job': '${_leavingWorkTextController.text}',
       'work_there': '${_workThere == 'no' ? 0 : 1}',
 
@@ -1763,7 +1780,7 @@ class _StepperScreenState extends State<StepperScreen> {
     String res = await response.stream.bytesToString() ;
     final registerTeacher = registerTeacherFromJson(res);
     if (response.statusCode == 200) {
-      // print(registerTeacher.error == true);
+      print(res);
       if(registerTeacher.error != null && registerTeacher.error == true){
         EasyLoading.showError("${registerTeacher.message}") ;
       }else{
@@ -1818,6 +1835,7 @@ class _StepperScreenState extends State<StepperScreen> {
   Future getData() async {
     await getSubjects();
     await getTermsCondition();
+    EasyLoading.dismiss();
   }
 
   Future<void> getSubjects() async {
@@ -1840,7 +1858,8 @@ class _StepperScreenState extends State<StepperScreen> {
     var headers = {
       'Authorization': 'Bearer {{teacher_token}}'
     };
-    var request = http.Request('GET', Uri.parse('${Api.termsCondition}'));
+    bool isArabic = SettingsRepository().getCurrentLanguageCode() == "ar" ;
+    var request = http.Request('GET', Uri.parse('${isArabic ? Api.termsConditionAr : Api.termsCondition}')); ///
 
     request.headers.addAll(headers);
 
@@ -1849,7 +1868,7 @@ class _StepperScreenState extends State<StepperScreen> {
     final terms = getTermsConditionModelFromJson(res);
     if (response.statusCode == 200) {
       if(terms.error == false){
-        agreeTermsConditionsText = terms.data ;
+        agreeTermsConditionsText = terms.data! ;
       }
     }
     else {

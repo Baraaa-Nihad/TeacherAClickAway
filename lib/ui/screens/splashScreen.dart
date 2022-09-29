@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../data/models/onboardingScreensModel.dart';
+import '../../data/repositories/settingsRepository.dart';
 import '../../utils/api.dart';
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -35,15 +36,13 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigateToNextScreen() async {
-    List<OnboardingScreen>? onBoardingScreensData = [] ;
-    onBoardingScreensData = await getOnBoardingScreen();
     await Future.delayed(Duration(seconds: 1));
     if (context.read<AuthCubit>().state is Unauthenticated) {
       // Navigator.of(context).pushReplacementNamed(Routes.login);
 
 
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
-        return LangScreen(onBoardingScreensData: onBoardingScreensData,);
+        return LangScreen();
       }));
     } else {
       Navigator.of(context).pushReplacementNamed(Routes.home);
@@ -88,24 +87,6 @@ class _SplashScreenState extends State<SplashScreen> {
         },
       ),
     );
-  }
-
-  Future<List<OnboardingScreen>?>  getOnBoardingScreen() async {
-    var request = http.Request('GET', Uri.parse('${Api.onBoardingScreen}'));
-
-
-    http.StreamedResponse response = await request.send();
-    String res = (await response.stream.bytesToString());
-    final onboardingScreensD = onboardingScreensModelFromJson(res);
-    if (response.statusCode == 200) {
-      if(onboardingScreensD.error == false){
-        return onboardingScreensD.onboardingScreens ;
-      }
-    }
-    else {
-      print(response.reasonPhrase);
-    }
-    return [] ;
   }
 
 }

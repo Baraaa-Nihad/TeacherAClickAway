@@ -14,6 +14,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../data/models/onboardingScreensModel.dart';
+import '../../../data/repositories/settingsRepository.dart';
+import '../../../utils/uiUtils.dart';
 
 class LangScreen extends StatefulWidget {
   final List<OnboardingScreen>? onBoardingScreensData;
@@ -72,7 +74,6 @@ class _LangScreenState extends State<LangScreen> {
                               .languageCode);
                       Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
                         return OnBoardingScreen(
-                          onBoardingScreensData: widget.onBoardingScreensData,
                         );
                       }));
                     },
@@ -94,7 +95,6 @@ class _LangScreenState extends State<LangScreen> {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (builder) {
                         return OnBoardingScreen(
-                          onBoardingScreensData: widget.onBoardingScreensData,
                         );
                       }));
                     },

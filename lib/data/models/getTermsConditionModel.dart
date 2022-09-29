@@ -10,16 +10,16 @@ String getTermsConditionModelToJson(GetTermsConditionModel data) => json.encode(
 
 class GetTermsConditionModel {
   GetTermsConditionModel({
-    required this.error,
-    required this.message,
-    required this.data,
-    required this.code,
+     this.error,
+     this.message,
+     this.data,
+     this.code,
   });
 
-  bool error;
-  String message;
-  String data;
-  int code;
+  bool? error;
+  String? message;
+  String? data;
+  int? code;
 
   factory GetTermsConditionModel.fromJson(Map<String, dynamic> json) => GetTermsConditionModel(
     error: json["error"] == null ? null : json["error"],

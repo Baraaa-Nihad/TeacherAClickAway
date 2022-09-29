@@ -54,6 +54,7 @@ class Api {
   static String subjectList = "${databaseUrl}teacher/subject-list";
   static String onBoardingScreen = "${databaseUrl}teacher/teacher-onboarding-screens";
   static String termsCondition = "${databaseUrl}settings?type=terms_condition";
+  static String termsConditionAr = "${databaseUrl}settings?type=terms_condition_ar";
   static String createAnnouncement = "${databaseUrl}teacher/send-announcement";
   static String deleteAnnouncement =
       "${databaseUrl}teacher/delete-announcement";

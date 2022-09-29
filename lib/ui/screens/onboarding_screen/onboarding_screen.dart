@@ -6,14 +6,16 @@ import 'package:eschool_teacher/utils/labelKeys.dart';
 import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/onboardingScreensModel.dart';
+import '../../../data/repositories/settingsRepository.dart';
+import '../../../utils/api.dart';
 import '../form/stteper_screen.dart';
-
+import 'package:http/http.dart' as http;
 class OnBoardingScreen extends StatefulWidget {
-  final List<OnboardingScreen>? onBoardingScreensData ;
-  const OnBoardingScreen({Key? key , this.onBoardingScreensData}) : super(key: key);
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
 
   @override
@@ -21,24 +23,73 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  List<OnboardingScreen>? onBoardingScreensData = [] ;
+
+  late Future futureMethod;
   late PageController _pageController;
   int _selectedPage = 0;
+  bool isArabic = SettingsRepository().getCurrentLanguageCode() == "ar" ;
 
   @override
   void initState() {
+    futureMethod = getData();
+
     super.initState();
     _pageController = PageController();
+  }
+
+  Future getData() async {
+    await getOnBoardingScreen();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          // child: oldBuildColumn(context),
-          child: newBuildColumn(context),
-        ));
+        body: futureBody());
   }
 
+  Widget futureBody() {
+    return FutureBuilder(
+        future: futureMethod,
+        // ignore: missing_return
+        builder: (context, snapshots) {
+          if (snapshots.hasError) {
+            print("${snapshots.error}");
+            return SizedBox();
+          }
+          switch (snapshots.connectionState) {
+            case ConnectionState.waiting:
+              EasyLoading.show(status: null);
+              return Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // CircularProgressIndicator(),
+                      Text(
+                        // "${translator.translate('loading')}",
+                        "",
+                      )
+                    ],
+                  ));
+
+            case ConnectionState.done:
+              EasyLoading.dismiss();
+              return SafeArea(
+                // child: oldBuildColumn(context),
+                child: newBuildColumn(context),
+              );
+
+            case ConnectionState.none:
+            // TODO: Handle this case.
+              return SizedBox();
+              break;
+            case ConnectionState.active:
+            // TODO: Handle this case.
+              return SizedBox();
+              break;
+          }
+        });
+  }
 
   Column newBuildColumn(BuildContext context) {
     return Column(
@@ -54,12 +105,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               });
             },
             // children: staticData(context),
-            children: List.generate(widget.onBoardingScreensData?.length.toInt() ?? 0, (index) {
+            children: List.generate(onBoardingScreensData?.length.toInt() ?? 0, (index) {
 
               return  OnBoardingPartsAll(
-                title: widget.onBoardingScreensData![index].title,
-                subtitle: widget.onBoardingScreensData![index].subTitle,
-                image: '${widget.onBoardingScreensData![index].image}',
+                title: isArabic ? onBoardingScreensData![index].titleAr :onBoardingScreensData![index].title,
+                subtitle: isArabic ? onBoardingScreensData![index].subTitleAr : onBoardingScreensData![index].subTitle,
+                image: '${onBoardingScreensData![index].image}',
               );
             }),
           ),
@@ -73,7 +124,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           padding: const EdgeInsets.only(top: 20,bottom: 20 ),
           child: ElevatedButton(
             onPressed: () {
-              if (_selectedPage == (widget.onBoardingScreensData?.length.toInt() ?? 0) -1) {
+              if (_selectedPage == (onBoardingScreensData?.length.toInt() ?? 0) -1) {
                 // Navigator.of(context).pushReplacementNamed(Routes.login);
                 Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
                   return StepperScreen();
@@ -84,7 +135,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               }
             },
             child: Text(
-              _selectedPage == (widget.onBoardingScreensData?.length.toInt() ?? 0) -1
+              _selectedPage == (onBoardingScreensData?.length.toInt() ?? 0) -1
                   ? UiUtils.getTranslatedLabel(context, getStartedKey)
                   : UiUtils.getTranslatedLabel(context, nextKey),
               style: TextStyle(color: Colors.white, fontSize: 20 ),
@@ -103,6 +154,28 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
+
+
+  Future  getOnBoardingScreen() async {
+    var request = http.Request('GET', Uri.parse('${Api.onBoardingScreen}'));
+
+
+    http.StreamedResponse response = await request.send();
+    String res = (await response.stream.bytesToString());
+    final onboardingScreensD = onboardingScreensModelFromJson(res);
+    if (response.statusCode == 200) {
+      if(onboardingScreensD.error == false){
+        onBoardingScreensData = onboardingScreensD.onboardingScreens ;
+      }
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return [] ;
+  }
+
+
+
   Row dotsStatic() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           OnBoardingSelectedPage(selected: _selectedPage == 0),
@@ -113,7 +186,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   Row dotsApi() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children:
-    List.generate(widget.onBoardingScreensData?.length.toInt() ?? 0, (index) {
+    List.generate(onBoardingScreensData?.length.toInt() ?? 0, (index) {
       return OnBoardingSelectedPage(selected: _selectedPage == index);
     }));
   }
