@@ -453,98 +453,151 @@ class _HomeContainerState extends State<HomeContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return InternetListenerWidget(
-      onInternetConnectionBack: () {
-        if (context.read<MyClassesCubit>().state is MyClassesFetchFailure) {
-          context.read<MyClassesCubit>().fetchMyClasses();
-        }
-      },
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * (0.075),
-                  right: MediaQuery.of(context).size.width * (0.075),
-                  bottom: UiUtils.getScrollViewBottomPadding(context),
-                  top: UiUtils.getScrollViewTopPadding(
-                      context: context,
-                      appBarHeightPercentage:
-                          UiUtils.appBarBiggerHeightPercentage)),
-              child: BlocBuilder<MyClassesCubit, MyClassesState>(
-                builder: (context, state) {
-                  if (state is MyClassesFetchSuccess) {
-                    return Column(
-                      children: [
-                        _buildMyClasses(),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _buildClassTeacher(),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _buildInformationAndMenu()
-                      ],
-                    );
-                  }
-                  if (state is MyClassesFetchFailure) {
-                    return Center(
-                      child: ErrorContainer(
-                        errorMessageCode: UiUtils.getErrorMessageFromErrorCode(
-                            context, state.errorMessage),
-                        onTapRetry: () {
-                          context.read<MyClassesCubit>().fetchMyClasses();
-                        },
-                      ),
-                    );
-                  }
+    return newBuild(context);
+  }
 
-                  return LayoutBuilder(builder: (context, boxConstraints) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildMyClassesLabel(),
-                        Wrap(
-                          spacing: boxConstraints.maxWidth * (0.1),
-                          runSpacing: 40,
-                          direction: Axis.horizontal,
-                          children: List.generate(
-                                  UiUtils.defaultShimmerLoadingContentCount,
-                                  (index) => index)
-                              .map((index) =>
-                                  _buildClassShimmerLoading(boxConstraints))
-                              .toList(),
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _buildClassTeacherLabel(),
-                        _buildClassShimmerLoading(boxConstraints),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        _buildInformationAndMenuLabel(),
-                        ...List.generate(
+  InternetListenerWidget oldBuild(BuildContext context) {
+    return InternetListenerWidget(
+    onInternetConnectionBack: () {
+      if (context.read<MyClassesCubit>().state is MyClassesFetchFailure) {
+        context.read<MyClassesCubit>().fetchMyClasses();
+      }
+    },
+    child: Stack(
+      children: [
+        Align(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * (0.075),
+                right: MediaQuery.of(context).size.width * (0.075),
+                bottom: UiUtils.getScrollViewBottomPadding(context),
+                top: UiUtils.getScrollViewTopPadding(
+                    context: context,
+                    appBarHeightPercentage:
+                        UiUtils.appBarBiggerHeightPercentage)),
+            child: BlocBuilder<MyClassesCubit, MyClassesState>(
+              builder: (context, state) {
+                if (state is MyClassesFetchSuccess) {
+                  return Column(
+                    children: [
+                      _buildMyClasses(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _buildClassTeacher(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _buildInformationAndMenu()
+                    ],
+                  );
+                }
+                if (state is MyClassesFetchFailure) {
+                  return Center(
+                    child: ErrorContainer(
+                      errorMessageCode: UiUtils.getErrorMessageFromErrorCode(
+                          context, state.errorMessage),
+                      onTapRetry: () {
+                        context.read<MyClassesCubit>().fetchMyClasses();
+                      },
+                    ),
+                  );
+                }
+
+                return LayoutBuilder(builder: (context, boxConstraints) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildMyClassesLabel(),
+                      Wrap(
+                        spacing: boxConstraints.maxWidth * (0.1),
+                        runSpacing: 40,
+                        direction: Axis.horizontal,
+                        children: List.generate(
                                 UiUtils.defaultShimmerLoadingContentCount,
                                 (index) => index)
-                            .map((e) =>
-                                _buildInformationShimmerLoadingContainer())
+                            .map((index) =>
+                                _buildClassShimmerLoading(boxConstraints))
                             .toList(),
-                      ],
-                    );
-                  });
-                },
-              ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _buildClassTeacherLabel(),
+                      _buildClassShimmerLoading(boxConstraints),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      _buildInformationAndMenuLabel(),
+                      ...List.generate(
+                              UiUtils.defaultShimmerLoadingContentCount,
+                              (index) => index)
+                          .map((e) =>
+                              _buildInformationShimmerLoadingContainer())
+                          .toList(),
+                    ],
+                  );
+                });
+              },
             ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: _buildTopProfileContainer(context),
-          ),
-        ],
-      ),
-    );
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: _buildTopProfileContainer(context),
+        ),
+      ],
+    ),
+  );
   }
+
+  Widget newBuild(BuildContext context) {
+    return   Stack(
+      children: [
+        Align(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(
+                bottom: UiUtils.getScrollViewBottomPadding(context),
+                top: UiUtils.getScrollViewTopPadding(
+                    context: context,
+                    appBarHeightPercentage:
+                    UiUtils.appBarSmallerHeightPercentage)),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * (0.025),
+                ),
+                Text("Coming Soon !"),
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: ScreenTopBackgroundContainer(
+            heightPercentage: UiUtils.appBarSmallerHeightPercentage,
+            padding: EdgeInsets.all(0),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    UiUtils.getTranslatedLabel(context, homeKey),
+                    style: TextStyle(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        fontSize: UiUtils.screenTitleFontSize),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );;
+  }
+
+
 }

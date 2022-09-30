@@ -24,43 +24,49 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      keyboardType: textInputType,
-      controller: controller,
-      cursorColor: Color.fromARGB(200, 204, 185, 155),
-      minLines: minLine,
-      maxLines: maxLine,
-      style: TextStyle(
-        fontSize: 18,
-        // color: Colors.grey.shade300,
-      ),
-      textAlign: TextAlign.start,
-      textInputAction: textInputAction,
-      decoration: InputDecoration(
-        suffixIcon: suffixIcon,
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: Color.fromARGB(200, 204, 185, 155),
-              // color:  Colors.grey.shade300,
-              width: 2,
-            )),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(
-              color: Color.fromARGB(200, 204, 185, 155),
-              width: 2,
-            )),
-        helperText:helperText ,
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.06,
+      child: TextField(
 
-        // label: Text(
-        //   label,
-        //   style: GoogleFonts.poppins(),
-        // ),
-        hintText: label,
-        labelStyle: TextStyle(color: Color(0xff212121)),
-        filled: true,
-        // focusColor: Colors.red.shade300,
+        keyboardType: textInputType,
+        controller: controller,
+        cursorColor: Color.fromARGB(200, 204, 185, 155),
+        minLines: minLine,
+        maxLines: maxLine,
+        style: TextStyle(
+          fontSize: MediaQuery.of(context).size.height * 0.018,
+          // color: Colors.grey.shade300,
+        ),
+        textAlign: TextAlign.start,
+        textInputAction: textInputAction,
+        decoration: InputDecoration(
+          suffixIcon: suffixIcon,
+          isDense: true,
+          // contentPadding: EdgeInsets.symmetric(vertical: 20.0 , horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: Color.fromARGB(200, 204, 185, 155),
+                // color:  Colors.grey.shade300,
+                width: 2,
+              )),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: Color.fromARGB(200, 204, 185, 155),
+                width: 2,
+              )),
+          helperText:helperText ,
+
+          // label: Text(
+          //   label,
+          //   style: GoogleFonts.poppins(),
+          // ),
+          hintText: label,
+          labelStyle: TextStyle(color: Color(0xff212121)),
+          filled: true,
+          // focusColor: Colors.red.shade300,
+        ),
       ),
     );
   }

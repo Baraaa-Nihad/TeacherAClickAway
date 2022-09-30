@@ -97,20 +97,20 @@ class _LoginScreenState extends State<LoginScreen>
         child: SlideTransition(
             position: _patterntAnimation.drive(
                 Tween<Offset>(begin: Offset(0.0, -1.0), end: Offset.zero)),
-            child: Image.asset(UiUtils.getImagePath("upper_pattern.png"))),
+            child: Image.asset(UiUtils.getImagePath("looo.png"))),
       ),
     );
   }
 
   Widget _buildLowerPattern() {
     return Align(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomRight,
       child: FadeTransition(
         opacity: _patterntAnimation,
         child: SlideTransition(
             position: _patterntAnimation.drive(
                 Tween<Offset>(begin: Offset(0.0, 1.0), end: Offset.zero)),
-            child: Image.asset(UiUtils.getImagePath("lower_pattern.png"))),
+            child: Image.asset(UiUtils.getImagePath("lo2.png"))),
       ),
     );
   }
@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen>
           },
           child: Text(
             "${UiUtils.getTranslatedLabel(context, forgotPasswordKey)}?",
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            style: TextStyle(color: Colors.black),
           ),
         ),
       ),
@@ -254,10 +254,10 @@ class _LoginScreenState extends State<LoginScreen>
                         context.read<AuthCubit>().authenticateUser(
                             jwtToken: state.jwtToken, teacher: state.teacher);
 
-                        // Navigator.of(context).pushReplacementNamed(Routes.home);
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
-                          return StepperScreen();
-                        }));
+                        Navigator.of(context).pushReplacementNamed(Routes.home);
+                        // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
+                        //   return StepperScreen();
+                        // }));
 
 
                       } else if (state is SignInFailure) {
@@ -300,7 +300,7 @@ class _LoginScreenState extends State<LoginScreen>
                 SizedBox(
                   height: 20,
                 ),
-                TermsAndConditionAndPrivacyPolicyContainer(),
+               // TermsAndConditionAndPrivacyPolicyContainer(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * (0.025),
                 ),
@@ -317,8 +317,8 @@ class _LoginScreenState extends State<LoginScreen>
     return Scaffold(
       body: Stack(
         children: [
-          _buildUpperPattern(),
-          _buildLowerPattern(),
+           _buildUpperPattern(),
+           //_buildLowerPattern(),
           _buildLoginForm(),
         ],
       ),

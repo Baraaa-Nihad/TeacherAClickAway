@@ -106,6 +106,7 @@
     "termAndConditionAgreement" : "By logging in, you agree to our",
 
     "termsAndCondition" : "Terms & Condition",
+    "termsAndCondition2" : "Contract ",
     "privacyPolicy" : "Privacy Policy",
     "pleaseEnterEmail" : "Please enter email",
     "passwordUpdateLinkSent" : "Password update link sent to",
@@ -247,6 +248,7 @@
     "uploadImages" : "Upload personal documents",
     "uploadYourProfilePic" : "Upload your profile picture",
     "uploadYourIdImage" : "Upload your identity image",
+    "uploadYourCertificateImage" : "Upload your certificate image",
     "lackOfPrecedenceOfCrimes" : "Lack of precedence of crimes",
     "documentingLackOfPrecedenceOfCrimes" : "Documenting the lack of precedence of crimes (from the court)",
     "termsAndConditions" : "Terms & conditions",
@@ -303,8 +305,9 @@
     "enterVerifiedAccount" : "Enter an effective email to verified account",
     "enterVillageNotExists" : "Enter your village name if is not exists",
     "joinUs" : "Join us",
-    "topOneTeachers" : "Top one teachers"
-
-
+    "topOneTeachers" : "Top one teachers",
+    "image_note" : "* Images must be clear, otherwise they will not be accepted!",
+    "EnterRequiredData" : "Enter required data !",
+    "emailWrong" : "Email Wrong!"
 
 }

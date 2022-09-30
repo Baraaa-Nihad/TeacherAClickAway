@@ -11,7 +11,7 @@ class OnBoardingSelectedPage extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(right: 10),
       width: selected == true ? 15 : 8,
-      height: selected == true ? 8 : 8,
+      height: 8,
       decoration: BoxDecoration(
           color: selected == true ? primaryColor : Color.fromARGB(255, 153, 153, 153),
           borderRadius: BorderRadius.circular(20)),

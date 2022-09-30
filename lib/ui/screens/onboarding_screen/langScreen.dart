@@ -13,8 +13,14 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../data/models/onboardingScreensModel.dart';
+import '../../../data/repositories/settingsRepository.dart';
+import '../../../utils/uiUtils.dart';
+
 class LangScreen extends StatefulWidget {
-  const LangScreen({Key? key}) : super(key: key);
+  final List<OnboardingScreen>? onBoardingScreensData;
+
+  const LangScreen({Key? key, this.onBoardingScreensData}) : super(key: key);
 
   @override
   _LangScreenState createState() => _LangScreenState();
@@ -38,47 +44,61 @@ class _LangScreenState extends State<LangScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: [
-            Expanded(flex:2,child: Image.asset('assets/images/12.png',width: 160,height: 160,),),
-       
+            Expanded(
+              flex: 2,
+              child: Image.asset(
+                'assets/images/12.png',
+                width: 160,
+                height: 160,
+              ),
+            ),
             Expanded(
                 child: Column(
               children: [
-               Text("Choose Language", style: GoogleFonts.cairo(
-                                textStyle: TextStyle(fontSize: 12)
-                                )
-,),
-                     SizedBox(height: 15,),
+                Text(
+                  "Choose Language",
+                  style: GoogleFonts.cairo(textStyle: TextStyle(fontSize: 12)),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(double.infinity, 45),
                       primary: primaryColor,
-                    ) ,
+                    ),
                     onPressed: () {
-                      context
-                          .read<AppLocalizationCubit>()
-                          .changeLanguage(AppLanguage(languageCode: 'en', languageName: 'English').languageCode);
+                      context.read<AppLocalizationCubit>().changeLanguage(
+                          AppLanguage(
+                                  languageCode: 'en', languageName: 'English')
+                              .languageCode);
                       Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
-                        return OnBoardingScreen();
-                      }
-                      ));
-                    }, child: Text('English')),
-                 SizedBox(height: 15,),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 45),
-                    primary: primaryColor,
-                  ) ,
-                    onPressed: () {
-                      context
-                          .read<AppLocalizationCubit>()
-                          .changeLanguage(AppLanguage(languageCode: 'ur', languageName: 'العربية').languageCode);
-
-                      Navigator.of(context).push(MaterialPageRoute(builder: (builder) {
-                        return OnBoardingScreen();
+                        return OnBoardingScreen(
+                        );
                       }));
-                    }, child: Text('العربية')),
-              
-                
+                    },
+                    child: Text('English')),
+                SizedBox(
+                  height: 15,
+                ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 45),
+                      primary: primaryColor,
+                    ),
+                    onPressed: () {
+                      context.read<AppLocalizationCubit>().changeLanguage(
+                          AppLanguage(
+                                  languageCode: 'ar', languageName: 'العربية')
+                              .languageCode);
+
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (builder) {
+                        return OnBoardingScreen(
+                        );
+                      }));
+                    },
+                    child: Text('العربية')),
               ],
             )),
           ],

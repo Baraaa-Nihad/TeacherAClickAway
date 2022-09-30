@@ -8,8 +8,13 @@ import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+
+import '../../data/models/onboardingScreensModel.dart';
+import '../../data/repositories/settingsRepository.dart';
+import '../../utils/api.dart';
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
 
@@ -34,6 +39,8 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(Duration(seconds: 1));
     if (context.read<AuthCubit>().state is Unauthenticated) {
       // Navigator.of(context).pushReplacementNamed(Routes.login);
+
+
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (builder) {
         return LangScreen();
       }));
@@ -63,16 +70,16 @@ class _SplashScreenState extends State<SplashScreen> {
             );
           }
           return Center(
-              child:  Flexible(child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              child:  Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                 SvgPicture.asset(UiUtils.getImagePath("appLog.svg")),
 
                 Expanded(child:  Lottie.asset(
                                 "assets/animations/lo11.json",
                                 animate: true ,width: 160 ,height: 160 ), )
-               
-                
 
-              ],)));
+
+
+              ],));
                
              
               
@@ -81,6 +88,7 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
 }
   // Text(
   //             "Your Best Choice",
