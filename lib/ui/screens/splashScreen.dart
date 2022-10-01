@@ -77,8 +77,6 @@ class _SplashScreenState extends State<SplashScreen> {
                                 "assets/animations/lo11.json",
                                 animate: true ,width: 160 ,height: 160 ), )
 
-
-
               ],));
                
              

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyTextField extends StatelessWidget {
   final TextEditingController controller;
+  final bool isRequired;
   final String label;
   final int minLine;
   final int maxLine;
@@ -14,6 +15,7 @@ class MyTextField extends StatelessWidget {
   MyTextField({
     required this.controller,
     required this.label,
+    required this.isRequired,
     this.minLine = 1,
     this.maxLine = 1,
     this.textInputAction = TextInputAction.next,
@@ -42,7 +44,7 @@ class MyTextField extends StatelessWidget {
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           isDense: true,
-          // contentPadding: EdgeInsets.symmetric(vertical: 20.0 , horizontal: 10),
+          contentPadding: EdgeInsets.symmetric(vertical: 10.0 , horizontal: 10),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
@@ -62,7 +64,7 @@ class MyTextField extends StatelessWidget {
           //   label,
           //   style: GoogleFonts.poppins(),
           // ),
-          hintText: label,
+          hintText:isRequired ? "${label} * " :"${label}",
           labelStyle: TextStyle(color: Color(0xff212121)),
           filled: true,
           // focusColor: Colors.red.shade300,

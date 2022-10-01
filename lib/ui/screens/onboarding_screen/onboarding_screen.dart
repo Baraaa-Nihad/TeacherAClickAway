@@ -6,8 +6,8 @@ import 'package:eschool_teacher/utils/labelKeys.dart';
 import 'package:eschool_teacher/utils/uiUtils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../data/models/onboardingScreensModel.dart';
 import '../../../data/repositories/settingsRepository.dart';
@@ -59,21 +59,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           }
           switch (snapshots.connectionState) {
             case ConnectionState.waiting:
-              EasyLoading.show(status: null);
+              // EasyLoading.show(status: null);
+
               return Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // CircularProgressIndicator(),
-                      Text(
-                        // "${translator.translate('loading')}",
-                        "",
-                      )
-                    ],
-                  ));
+                  child: Lottie.asset(
+                      "assets/animations/lo11.json",
+                      animate: true ,width: 160 ,height: 160 ));
 
             case ConnectionState.done:
-              EasyLoading.dismiss();
+              // EasyLoading.dismiss();
               return SafeArea(
                 // child: oldBuildColumn(context),
                 child: newBuildColumn(context),

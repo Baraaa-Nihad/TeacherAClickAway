@@ -18,7 +18,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -78,11 +77,9 @@ class MyApp extends StatelessWidget {
         final currentLanguage =
             context.watch<AppLocalizationCubit>().state.language;
         return MaterialApp(
-          builder: EasyLoading.init(
-            builder: (context, widget) {
-              return ScrollConfiguration(behavior: GlobalScrollBehavior(), child: widget!);
-            },
-          ),
+          builder: (context, widget) {
+            return ScrollConfiguration(behavior: GlobalScrollBehavior(), child: widget!);
+          },
           theme: Theme.of(context).copyWith(
               textTheme: GoogleFonts.cairoTextTheme(Theme.of(context).textTheme),
               scaffoldBackgroundColor: pageBackgroundColor,

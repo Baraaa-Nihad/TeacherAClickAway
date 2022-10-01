@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:eschool_teacher/app/routes.dart';
 import 'package:eschool_teacher/utils/api.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:eschool_teacher/getx_controllers/subjects_controller.dart';
 import 'package:eschool_teacher/ui/styles/colors.dart';
@@ -15,6 +14,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:eschool_teacher/ui/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:eschool_teacher/getx_controllers/image_picker_controller.dart';
+import 'package:lottie/lottie.dart';
 import '../../../data/models/RegisterTeacherModel.dart';
 import '../../../data/models/getTermsConditionModel.dart';
 import '../../../data/models/subjectListModel.dart';
@@ -223,7 +223,7 @@ class _StepperScreenState extends State<StepperScreen> {
                   children: [
                     Expanded(
                       child: MyTextField(
-
+                          isRequired: true,
                           controller: _firstNameTextController,
                           label: UiUtils.getTranslatedLabel(
                               context, firstNameKey )),
@@ -233,6 +233,7 @@ class _StepperScreenState extends State<StepperScreen> {
                     ),
                     Expanded(
                       child: MyTextField(
+                          isRequired: true,
                           controller: _lastNameTextController,
                           label:
                               UiUtils.getTranslatedLabel(context, lastNameKey, )),
@@ -245,6 +246,7 @@ class _StepperScreenState extends State<StepperScreen> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.11,
                   child: MyTextField(
+                      isRequired: true,
                     controller: _emailTextController,
                     label: UiUtils.getTranslatedLabel(context, emailKey),
 
@@ -317,8 +319,7 @@ class _StepperScreenState extends State<StepperScreen> {
                                 decoration: InputDecoration(
                                   focusColor: Colors.transparent,
                                   border: InputBorder.none,
-                                  hintText: UiUtils.getTranslatedLabel(
-                                      context, phoneNumberKey),
+                                  hintText: "${UiUtils.getTranslatedLabel(context, phoneNumberKey)} *",
                                 ),
                               )),
                             ),
@@ -338,9 +339,10 @@ class _StepperScreenState extends State<StepperScreen> {
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey.shade200,
+                            color: primaryColor,
                             border: Border.all(
-                                color: Color.fromARGB(200, 204, 185, 155), width: 2)),
+                                color: Colors.black.withOpacity(0.5), width: 2)),
+                                // color: Color.fromARGB(200, 204, 185, 155), width: 2)),
                         child: Row(
                           children: [
                             Text(UiUtils.getTranslatedLabel(context, confirmKey))
@@ -357,6 +359,7 @@ class _StepperScreenState extends State<StepperScreen> {
                 Container(
                 height: MediaQuery.of(context).size.height * 0.07,
                   child: MyTextField(
+                    isRequired: true,
                     textInputType: TextInputType.number,
                     controller: _idNationalTextController,
                     label:
@@ -416,8 +419,7 @@ class _StepperScreenState extends State<StepperScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  UiUtils.getTranslatedLabel(
-                                      context, enterYourBirthdayKey),
+                                  "${UiUtils.getTranslatedLabel(context, enterYourBirthdayKey)} *",
                                 ),
                                 Icon(Icons.calendar_month,
                                     color: Colors.black45),
@@ -437,7 +439,7 @@ class _StepperScreenState extends State<StepperScreen> {
                           color: Color.fromARGB(200, 204, 185, 155), width: 2)),
                   child: DropdownButton(
                     hint: Text(
-                      UiUtils.getTranslatedLabel(context, chooseCityKey),
+                      "${UiUtils.getTranslatedLabel(context, chooseCityKey)} *",
                     ),
                     underline: Divider(
                       thickness: 0,
@@ -460,40 +462,42 @@ class _StepperScreenState extends State<StepperScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.065,
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.shade200,
-                      border: Border.all(
-                          color: Color.fromARGB(200, 204, 185, 155), width: 2)),
-                  child: DropdownButton(
-                    hint: Text(
-                      UiUtils.getTranslatedLabel(context, chooseVillageKey),
-                    ),
-                    underline: Divider(
-                      thickness: 0,
-                    ),
-                    isExpanded: true,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedSubCity = value;
-                      });
-                    },
-                    value: selectedSubCity,
-                    items: RamallahSubCitiesAr.map((e) => DropdownMenuItem(
-                          child: Text("${e}"),
-                          value: e,
-                        )).toList(),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
+                ///chooseVillageKey
+                // Container(
+                //   height: MediaQuery.of(context).size.height * 0.065,
+                //   padding: EdgeInsets.all(5),
+                //   decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(10),
+                //       color: Colors.grey.shade200,
+                //       border: Border.all(
+                //           color: Color.fromARGB(200, 204, 185, 155), width: 2)),
+                //   child: DropdownButton(
+                //     hint: Text(
+                //       UiUtils.getTranslatedLabel(context, chooseVillageKey),
+                //     ),
+                //     underline: Divider(
+                //       thickness: 0,
+                //     ),
+                //     isExpanded: true,
+                //     onChanged: (value) {
+                //       setState(() {
+                //         selectedSubCity = value;
+                //       });
+                //     },
+                //     value: selectedSubCity,
+                //     items: RamallahSubCitiesAr.map((e) => DropdownMenuItem(
+                //           child: Text("${e}"),
+                //           value: e,
+                //         )).toList(),
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.10,
                   child: MyTextField(
+                      isRequired: true,
                       controller: _addressTextController,
                       label: UiUtils.getTranslatedLabel(context, villageKey),
                       helperText: UiUtils.getTranslatedLabel(
@@ -553,6 +557,7 @@ class _StepperScreenState extends State<StepperScreen> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.065,
                   child: MyTextField(
+                    isRequired: false,
                     controller: _emergencyNameTextController,
                     label: UiUtils.getTranslatedLabel(context, emergencyNameKey),
                     suffixIcon: IconButton(
@@ -591,6 +596,7 @@ class _StepperScreenState extends State<StepperScreen> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.065,
                   child: MyTextField(
+                    isRequired: false,
                     controller: _emergencyNumberTextController,
                     label:
                         UiUtils.getTranslatedLabel(context, emergencyNumberKey),
@@ -651,6 +657,7 @@ class _StepperScreenState extends State<StepperScreen> {
                   height: 20,
                 ),
                 MyTextField(
+                  isRequired: true,
                   controller: _skillsTextController,
                   label: UiUtils.getTranslatedLabel(
                       context, talkAboutYourSkillsKey),
@@ -661,6 +668,7 @@ class _StepperScreenState extends State<StepperScreen> {
                   height: 20,
                 ),
                 MyTextField(
+                  isRequired: true,
                   controller: _experienceWorkTextController,
                   label: UiUtils.getTranslatedLabel(
                       context, talkAboutYourExperienceKey),
@@ -684,6 +692,7 @@ class _StepperScreenState extends State<StepperScreen> {
                     height: 8,
                   ),
                   MyTextField(
+                      isRequired: false,
                       controller: _previousWorkTextController,
                       label:
                           UiUtils.getTranslatedLabel(context, previousWorkKey)),
@@ -691,6 +700,7 @@ class _StepperScreenState extends State<StepperScreen> {
                     height: 15,
                   ),
                   MyTextField(
+                      isRequired: false,
                       controller: _previousWorkPlaceTextController,
                       label: UiUtils.getTranslatedLabel(
                           context, previousWorkPlaceKey)),
@@ -698,6 +708,7 @@ class _StepperScreenState extends State<StepperScreen> {
                     height: 15,
                   ),
                   MyTextField(
+                      isRequired: false,
                       textInputType: TextInputType.number,
                       controller: _previousWorkNumberTextController,
                       label: UiUtils.getTranslatedLabel(
@@ -760,6 +771,7 @@ class _StepperScreenState extends State<StepperScreen> {
                   ),
                   _workThere == 'no'
                       ? MyTextField(
+                          isRequired: false,
                           controller: _leavingWorkTextController,
                           label: UiUtils.getTranslatedLabel(
                               context, reasonForLeavingPreviousJopKey),
@@ -1346,18 +1358,10 @@ class _StepperScreenState extends State<StepperScreen> {
           }
           switch (snapshots.connectionState) {
             case ConnectionState.waiting:
-              EasyLoading.show(status: null);
               return Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // CircularProgressIndicator(),
-                      Text(
-                        // "${translator.translate('loading')}",
-                        "",
-                      )
-                    ],
-                  ));
+                  child: Lottie.asset(
+                      "assets/animations/lo11.json",
+                      animate: true ,width: 160 ,height: 160 ));
 
             case ConnectionState.done:
 
@@ -1643,7 +1647,8 @@ class _StepperScreenState extends State<StepperScreen> {
       if (_checkPersonalData()) {
         if (_images()) {
           // Navigator.of(context).pushReplacementNamed(Routes.login);
-          EasyLoading.show(status: null) ;
+
+          _showLoadingDialog();
           sendAPI();
 
         } else {
@@ -1683,15 +1688,15 @@ class _StepperScreenState extends State<StepperScreen> {
       'phone': '${_phoneTextController.text}',
       'birth_day': '${date.year}-${date.month}-${date.day}',
       'national_id_number': '${_idNationalTextController.text}',
-      'bio': '${_skillsTextController.text}',
+      'skills': '${_skillsTextController.text}',
       'experience': '${_experienceWorkTextController.text}',
-      'country': '${dropdownCities}',
-      'village': '${_addressTextController.text}',
-      'e_contact_name': '${_emergencyNameTextController.text}',
-      'e_contact_number': '${_emergencyNumberTextController.text}',
-      'previous_work': '${_previousWorkTextController.text}',
-      'previous_work_number': '${_previousWorkNumberTextController.text}',
-      'p_work_place': '${_previousWorkPlaceTextController.text}',
+      'country': '${selectedCity}',
+      if(_addressTextController.text.isNotEmpty)'village': '${_addressTextController.text}',
+        if(_emergencyNameTextController.text.isNotEmpty)  'e_contact_name': '${_emergencyNameTextController.text}',
+      if(_emergencyNumberTextController.text.isNotEmpty)  'e_contact_number': '${_emergencyNumberTextController.text}',
+      if(_previousWorkTextController.text.isNotEmpty)   'previous_work': '${_previousWorkTextController.text}',
+      if(_previousWorkNumberTextController.text.isNotEmpty)  'previous_work_number': '${_previousWorkNumberTextController.text}',
+      if(_previousWorkPlaceTextController.text.isNotEmpty)  'p_work_place': '${_previousWorkPlaceTextController.text}',
       // 'r_leaving_prev_job': '${_leavingWorkTextController.text != null && _leavingWorkTextController.text != ''  ? _leavingWorkTextController.text : "-"}',
       if(_workThere == 'no') 'r_leaving_prev_job': '${_leavingWorkTextController.text}',
       'work_there': '${_workThere == 'no' ? 0 : 1}',
@@ -1772,7 +1777,7 @@ class _StepperScreenState extends State<StepperScreen> {
     });
     request.files.add(await http.MultipartFile.fromPath('national_id_photo', '${_controller.IdImage?.path}'));
     request.files.add(await http.MultipartFile.fromPath('certificate', '${_controller.certificateImage?.path}'));
-    request.files.add(await http.MultipartFile.fromPath('doc_lack_crimes', '${_controller.unCrimeImage?.path}'));
+    if(_controller.unCrimeImage != null)request.files.add(await http.MultipartFile.fromPath('doc_lack_crimes', '${_controller.unCrimeImage?.path}'));
     request.files.add(await http.MultipartFile.fromPath('profile', '${_controller.profileImage?.path}'));
 
 
@@ -1782,12 +1787,25 @@ class _StepperScreenState extends State<StepperScreen> {
     if (response.statusCode == 200) {
       print(res);
       if(registerTeacher.error != null && registerTeacher.error == true){
-        EasyLoading.showError("${registerTeacher.message}") ;
-      }else{
-        EasyLoading.showSuccess("${registerTeacher.message}") ;
+        // EasyLoading.showError("${registerTeacher.message}") ;
+        _dissmisLoadingDialog();
+        final snackBar = SnackBar(
+          dismissDirection: DismissDirection.horizontal,
+          backgroundColor: Colors.red,
+          content: Text(
+            '${registerTeacher.message}',
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      }else {
+        // EasyLoading.showSuccess("${registerTeacher.message}") ;
+        _dissmisLoadingDialog();
+        Navigator.of(context).pushReplacementNamed(Routes.login);
       }
     }
     else {
+      _dissmisLoadingDialog();
       print(response.reasonPhrase);
     }
   }
@@ -1795,8 +1813,9 @@ class _StepperScreenState extends State<StepperScreen> {
   bool _images() {
     if (_controller.IdImage != null &&
         _controller.profileImage != null &&
-        _controller.certificateImage != null &&
-        _controller.unCrimeImage != null) {
+        _controller.certificateImage != null
+        // && _controller.unCrimeImage != null
+    ) {
       return true;
     }
 
@@ -1804,15 +1823,17 @@ class _StepperScreenState extends State<StepperScreen> {
   }
 
   bool _checkPersonalData() {
-    if (_firstNameTextController.text.isNotEmpty &&
+    if (
+        _firstNameTextController.text.isNotEmpty &&
         _lastNameTextController.text.isNotEmpty &&
         _idNationalTextController.text.isNotEmpty &&
-        _emergencyNameTextController.text.isNotEmpty &&
-        _emergencyNumberTextController.text.isNotEmpty &&
+        // _emergencyNameTextController.text.isNotEmpty &&
+        // _emergencyNumberTextController.text.isNotEmpty &&
         _phoneTextController.text.isNotEmpty &&
         _emailTextController.text.isNotEmpty &&
-        _previousWorkTextController.text.isNotEmpty &&
-        _previousWorkPlaceTextController.text.isNotEmpty &&
+         _addressTextController.text.isNotEmpty &&
+        // _previousWorkTextController.text.isNotEmpty &&
+        // _previousWorkPlaceTextController.text.isNotEmpty &&
         _skillsTextController.text.isNotEmpty &&
         _experienceWorkTextController.text.isNotEmpty &&
         isDateChoosen) {
@@ -1835,7 +1856,6 @@ class _StepperScreenState extends State<StepperScreen> {
   Future getData() async {
     await getSubjects();
     await getTermsCondition();
-    EasyLoading.dismiss();
   }
 
   Future<void> getSubjects() async {
@@ -1876,6 +1896,26 @@ class _StepperScreenState extends State<StepperScreen> {
     }
 
   }
+
+  void _showLoadingDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Center(
+            child: Lottie.asset(
+                "assets/animations/lo11.json",
+                animate: true ,width: 160 ,height: 160 ),
+          ),
+        );
+      },
+    );
+  }
+  void _dissmisLoadingDialog() {
+    Navigator.pop(context);
+  }
+
 }
 
 class TopicAPI{
