@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:eschool_teacher/app/routes.dart';
 import 'package:eschool_teacher/utils/api.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:eschool_teacher/getx_controllers/subjects_controller.dart';
 import 'package:eschool_teacher/ui/styles/colors.dart';
@@ -37,6 +38,7 @@ class _StepperScreenState extends State<StepperScreen> {
   dynamic selectedSubCity;
 
   RangeValues _currentRangeValues = const RangeValues(3, 10);
+  RangeValues _currentRangeValues1 = const RangeValues(3, 10);
   RangeValues _currentRangeValues2 = const RangeValues(3, 10);
   RangeValues _currentRangeValues3 = const RangeValues(3, 10);
   RangeValues _currentRangeValues4 = const RangeValues(3, 10);
@@ -48,6 +50,19 @@ class _StepperScreenState extends State<StepperScreen> {
   RangeValues _currentRangeValues10 = const RangeValues(3, 10);
   RangeValues _currentRangeValues11 = const RangeValues(3, 10);
   RangeValues _currentRangeValues12 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues13 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues14 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues15 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues16 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues17 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues18 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues19 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues20 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues21 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues22 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues23 = const RangeValues(3, 10);
+  RangeValues _currentRangeValues24 = const RangeValues(3, 10);
+
   late Future futureMethod;
 
   RangeValues values = RangeValues(0.9, 1.0);
@@ -64,6 +79,19 @@ class _StepperScreenState extends State<StepperScreen> {
   String _work9 = 'yes';
   String _work10 = 'yes';
   String _work11 = 'yes';
+  String _work12 = 'yes';
+  String _work13 = 'yes';
+  String _work14 = 'yes';
+  String _work15 = 'yes';
+  String _work16 = 'yes';
+  String _work17 = 'yes';
+  String _work18 = 'yes';
+  String _work19 = 'yes';
+  String _work20 = 'yes';
+  String _work21 = 'yes';
+  String _work22 = 'yes';
+  String _work23 = 'yes';
+  String _work24 = 'yes';
 
 
   bool accept = false;
@@ -82,6 +110,19 @@ class _StepperScreenState extends State<StepperScreen> {
   bool subject9 = false;
   bool subject10 = false;
   bool subject11 = false;
+  bool subject12 = false;
+  bool subject13 = false;
+  bool subject14 = false;
+  bool subject15 = false;
+  bool subject16 = false;
+  bool subject17 = false;
+  bool subject18 = false;
+  bool subject19 = false;
+  bool subject20 = false;
+  bool subject21 = false;
+  bool subject22 = false;
+  bool subject23 = false;
+  bool subject24 = false;
 
   // bool arabic = false;
   // bool math = false;
@@ -371,25 +412,8 @@ class _StepperScreenState extends State<StepperScreen> {
                 ),
                 InkWell(
                     onTap: () async {
-                      DateTime? newDate = await showDatePicker(
-                        context: context,
-                        initialDate: date,
-                        firstDate: DateTime(1900),
-                        lastDate: DateTime(2023),
-                        builder: (context, child) {
-                          return Theme(
-                              data: Theme.of(context).copyWith(
-                                  textButtonTheme: TextButtonThemeData(
-                                      style: TextButton.styleFrom(
-                                    primary: Colors.black,
-                                  )),
-                                  colorScheme: ColorScheme.light(
-                                      primary:
-                                          Color.fromARGB(200, 204, 185, 155),
-                                      onPrimary: Colors.black)),
-                              child: child!);
-                        },
-                      );
+                      DateTime? newDate = await showDatePickerMaterialCupertino();
+                      // DateTime? newDate = await showDatePickerMaterial();
                       if (newDate == null) return;
                       setState(() {
                         date = newDate;
@@ -497,7 +521,7 @@ class _StepperScreenState extends State<StepperScreen> {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.10,
                   child: MyTextField(
-                      isRequired: true,
+                      isRequired: false,
                       controller: _addressTextController,
                       label: UiUtils.getTranslatedLabel(context, villageKey),
                       helperText: UiUtils.getTranslatedLabel(
@@ -1045,6 +1069,85 @@ class _StepperScreenState extends State<StepperScreen> {
         ),
       ];
 
+  Future<DateTime?> showDatePickerMaterial() {
+    return showDatePicker(
+                      context: context,
+                      initialDate: date,
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime(2023),
+                      builder: (context, child) {
+                        return Theme(
+                            data: Theme.of(context).copyWith(
+                                textButtonTheme: TextButtonThemeData(
+                                    style: TextButton.styleFrom(
+                                  primary: Colors.black,
+                                )),
+                                colorScheme: ColorScheme.light(
+                                    primary:
+                                        Color.fromARGB(200, 204, 185, 155),
+                                    onPrimary: Colors.black)),
+                            child: child!);
+                      },
+                    );
+  }
+
+  Future<DateTime?> showDatePickerMaterialCupertino() {
+    return   showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+              textButtonTheme: TextButtonThemeData(
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                  )),
+              colorScheme: ColorScheme.light(
+                  primary:
+                  Color.fromARGB(200, 204, 185, 155),
+                  onPrimary: Colors.black)),
+          child: Container(
+            height: MediaQuery.of(context).copyWith().size.height * 0.25,
+            color: Colors.white,
+            child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                initialDateTime: DateTime.now(),
+                onDateTimeChanged: (val) {
+                  setState(() {
+                    date = val;
+                    isDateChoosen = true;
+                  });
+
+                  // setState(() {
+                  //   date = val;
+                  // });
+                }),
+          ), // This will change to light theme.
+        );
+      },
+    );
+  }
+
+  iosDatePicker(BuildContext context) {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext builder) {
+          return Container(
+            height: MediaQuery.of(context).copyWith().size.height * 0.25,
+            color: Colors.white,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.date,
+              onDateTimeChanged: (value) {
+                // chosenDateTime = value;
+                // print(chosenDateTime);
+              },
+              initialDateTime: DateTime.now(),
+              minimumYear: 2000,
+              maximumYear: 3000,
+            ),
+          );
+        });
+  }
+
   Column staticTopic() {
     return Column(
             children: [
@@ -1077,7 +1180,7 @@ class _StepperScreenState extends State<StepperScreen> {
                   translatedKey: subjectList[1].name!,
                   translatedKeyAr: subjectList[1].nameAr!,
                   subjectValue: subject1,
-                  rangeValues: _currentRangeValues12,
+                  rangeValues: _currentRangeValues1,
                   callBack: (bool value){
                     setState(() {
                       subject1 = value;
@@ -1085,7 +1188,7 @@ class _StepperScreenState extends State<StepperScreen> {
                   },
                   callBackRange: (RangeValues values){
                     setState(() {
-                      _currentRangeValues12 = values;
+                      _currentRangeValues1 = values;
                     });
                   },
                   callBackWork: (String value){
@@ -1324,6 +1427,322 @@ class _StepperScreenState extends State<StepperScreen> {
                   },
                   rangeValues: _currentRangeValues11,
                   work: _work11),
+
+
+              /// subject-12
+              if(subjectList.length > 12)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[12].name!,
+                    translatedKeyAr: subjectList[12].nameAr!,
+                    subjectValue: subject12,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues12 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work12 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject12 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues12,
+                    work: _work12),
+
+              /// subject-13
+              if(subjectList.length > 13)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[13].name!,
+                    translatedKeyAr: subjectList[13].nameAr!,
+                    subjectValue: subject13,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues13 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work13 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject13 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues13,
+                    work: _work13),
+
+
+              /// subject-14
+              if(subjectList.length > 14)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[14].name!,
+                    translatedKeyAr: subjectList[14].nameAr!,
+                    subjectValue: subject14,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues14 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work14 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject14 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues14,
+                    work: _work14),
+
+              /// subject-15
+              if(subjectList.length > 15)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[15].name!,
+                    translatedKeyAr: subjectList[15].nameAr!,
+                    subjectValue: subject15,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues15 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work15 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject15 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues15,
+                    work: _work15),
+
+              /// subject-16
+              if(subjectList.length > 16)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[16].name!,
+                    translatedKeyAr: subjectList[16].nameAr!,
+                    subjectValue: subject16,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues16 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work16 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject16 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues16,
+                    work: _work16),
+
+              /// subject-17
+              if(subjectList.length > 17)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[17].name!,
+                    translatedKeyAr: subjectList[17].nameAr!,
+                    subjectValue: subject17,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues17 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work17 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject17 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues17,
+                    work: _work17),
+
+              /// subject-18
+              if(subjectList.length > 18)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[18].name!,
+                    translatedKeyAr: subjectList[18].nameAr!,
+                    subjectValue: subject18,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues18 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work18 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject18 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues18,
+                    work: _work18),
+
+              /// subject-19
+              if(subjectList.length > 19)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[19].name!,
+                    translatedKeyAr: subjectList[19].nameAr!,
+                    subjectValue: subject19,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues19 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work19 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject19 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues19,
+                    work: _work19),
+
+              /// subject-20
+              if(subjectList.length > 20)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[20].name!,
+                    translatedKeyAr: subjectList[20].nameAr!,
+                    subjectValue: subject20,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues20 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work20 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject20 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues20,
+                    work: _work20),
+
+              /// subject-21
+              if(subjectList.length > 21)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[21].name!,
+                    translatedKeyAr: subjectList[21].nameAr!,
+                    subjectValue: subject21,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues21 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work21 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject21 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues21,
+                    work: _work21),
+
+              /// subject-22
+              if(subjectList.length > 22)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[22].name!,
+                    translatedKeyAr: subjectList[22].nameAr!,
+                    subjectValue: subject22,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues22 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work22 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject22 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues22,
+                    work: _work22),
+
+              /// subject-23
+              if(subjectList.length > 23)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[23].name!,
+                    translatedKeyAr: subjectList[23].nameAr!,
+                    subjectValue: subject23,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues23 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work23 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject23 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues23,
+                    work: _work23),
+
+              /// subject-24
+              if(subjectList.length > 24)
+                ChooseSubjectAllData(
+                    translatedKey: subjectList[24].name!,
+                    translatedKeyAr: subjectList[24].nameAr!,
+                    subjectValue: subject24,
+                    callBackRange: (RangeValues values){
+                      setState(() {
+                        _currentRangeValues24 = values;
+                      });
+                    },
+                    callBackWork: (String value){
+                      setState(() {
+                        _work24 = value;
+                      });
+                    },
+                    callBack: (bool value){
+                      setState(() {
+                        subject24 = value;
+                      });
+                    },
+                    rangeValues: _currentRangeValues24,
+                    work: _work24),
+
+              
             ],
           );
   }
@@ -1495,8 +1914,8 @@ class _StepperScreenState extends State<StepperScreen> {
     addTopic(
       topic: subject1,
       subjectId: subjectList[1].id!,
-      from: _currentRangeValues12.start.toInt(),
-      to: _currentRangeValues12.end.toInt(),
+      from: _currentRangeValues1.start.toInt(),
+      to: _currentRangeValues1.end.toInt(),
       work: _work1,
     );
 
@@ -1598,6 +2017,126 @@ class _StepperScreenState extends State<StepperScreen> {
       to: _currentRangeValues11.end.toInt(),
       work: _work11,
     );
+    /// subject-12
+    if(subjectList.length > 12)
+    addTopic(
+      topic: subject12,
+      subjectId: subjectList[12].id!,
+      from: _currentRangeValues12.start.toInt(),
+      to: _currentRangeValues12.end.toInt(),
+      work: _work12,
+    );
+    /// subject-13
+    if(subjectList.length > 13)
+    addTopic(
+      topic: subject13,
+      subjectId: subjectList[13].id!,
+      from: _currentRangeValues13.start.toInt(),
+      to: _currentRangeValues13.end.toInt(),
+      work: _work13,
+    );
+    /// subject-14
+    if(subjectList.length > 14)
+      addTopic(
+        topic: subject14,
+        subjectId: subjectList[14].id!,
+        from: _currentRangeValues14.start.toInt(),
+        to: _currentRangeValues14.end.toInt(),
+        work: _work14,
+      );
+    /// subject-15
+    if(subjectList.length > 15)
+      addTopic(
+        topic: subject15,
+        subjectId: subjectList[15].id!,
+        from: _currentRangeValues15.start.toInt(),
+        to: _currentRangeValues15.end.toInt(),
+        work: _work15,
+      ); 
+    /// subject-16
+    if(subjectList.length > 16)
+      addTopic(
+        topic: subject16,
+        subjectId: subjectList[16].id!,
+        from: _currentRangeValues16.start.toInt(),
+        to: _currentRangeValues16.end.toInt(),
+        work: _work16,
+      );  
+    /// subject-17
+    if(subjectList.length > 17)
+      addTopic(
+        topic: subject17,
+        subjectId: subjectList[17].id!,
+        from: _currentRangeValues17.start.toInt(),
+        to: _currentRangeValues17.end.toInt(),
+        work: _work17,
+      );  
+    /// subject-18
+    if(subjectList.length > 18)
+      addTopic(
+        topic: subject18,
+        subjectId: subjectList[18].id!,
+        from: _currentRangeValues18.start.toInt(),
+        to: _currentRangeValues18.end.toInt(),
+        work: _work18,
+      );
+    /// subject-19
+    if(subjectList.length > 19)
+      addTopic(
+        topic: subject19,
+        subjectId: subjectList[19].id!,
+        from: _currentRangeValues19.start.toInt(),
+        to: _currentRangeValues19.end.toInt(),
+        work: _work19,
+      );
+    /// subject-20
+    if(subjectList.length > 20)
+      addTopic(
+        topic: subject20,
+        subjectId: subjectList[20].id!,
+        from: _currentRangeValues20.start.toInt(),
+        to: _currentRangeValues20.end.toInt(),
+        work: _work20,
+      );
+    /// subject-21
+    if(subjectList.length > 21)
+      addTopic(
+        topic: subject21,
+        subjectId: subjectList[21].id!,
+        from: _currentRangeValues21.start.toInt(),
+        to: _currentRangeValues21.end.toInt(),
+        work: _work21,
+      );
+    /// subject-22
+    if(subjectList.length > 22)
+      addTopic(
+        topic: subject22,
+        subjectId: subjectList[22].id!,
+        from: _currentRangeValues22.start.toInt(),
+        to: _currentRangeValues22.end.toInt(),
+        work: _work22,
+      );
+    /// subject-23
+    if(subjectList.length > 23)
+      addTopic(
+        topic: subject23,
+        subjectId: subjectList[23].id!,
+        from: _currentRangeValues23.start.toInt(),
+        to: _currentRangeValues23.end.toInt(),
+        work: _work23,
+      );
+    /// subject-24
+    if(subjectList.length > 24)
+      addTopic(
+        topic: subject24,
+        subjectId: subjectList[24].id!,
+        from: _currentRangeValues24.start.toInt(),
+        to: _currentRangeValues24.end.toInt(),
+        work: _work24,
+      );
+    
+    
+    
 
     topicsAPI.forEach((element) {
       print("subject_ids[${topicsAPI.indexOf(element)}]  ${element.subject_id}");
@@ -1764,6 +2303,66 @@ class _StepperScreenState extends State<StepperScreen> {
       if(topicsAPI.length > 12) 'grades_to[12]': "${topicsAPI[12].grades_to}",
       if(topicsAPI.length > 12) 'main_subjects[12]': "${topicsAPI[12].main_subject}",
 
+      if(topicsAPI.length > 13) 'subject_ids[13]': "${topicsAPI[13].subject_id}",
+      if(topicsAPI.length > 13) 'grades_from[13]': "${topicsAPI[13].grades_from}",
+      if(topicsAPI.length > 13) 'grades_to[13]': "${topicsAPI[13].grades_to}",
+      if(topicsAPI.length > 13) 'main_subjects[13]': "${topicsAPI[13].main_subject}",
+
+      if(topicsAPI.length > 14) 'subject_ids[14]': "${topicsAPI[14].subject_id}",
+      if(topicsAPI.length > 14) 'grades_from[14]': "${topicsAPI[14].grades_from}",
+      if(topicsAPI.length > 14) 'grades_to[14]': "${topicsAPI[14].grades_to}",
+      if(topicsAPI.length > 14) 'main_subjects[14]': "${topicsAPI[14].main_subject}",
+
+      if(topicsAPI.length > 15) 'subject_ids[15]': "${topicsAPI[15].subject_id}",
+      if(topicsAPI.length > 15) 'grades_from[15]': "${topicsAPI[15].grades_from}",
+      if(topicsAPI.length > 15) 'grades_to[15]': "${topicsAPI[15].grades_to}",
+      if(topicsAPI.length > 15) 'main_subjects[15]': "${topicsAPI[15].main_subject}",
+
+      if(topicsAPI.length > 16) 'subject_ids[16]': "${topicsAPI[16].subject_id}",
+      if(topicsAPI.length > 16) 'grades_from[16]': "${topicsAPI[16].grades_from}",
+      if(topicsAPI.length > 16) 'grades_to[16]': "${topicsAPI[16].grades_to}",
+      if(topicsAPI.length > 16) 'main_subjects[16]': "${topicsAPI[16].main_subject}",
+
+      if(topicsAPI.length > 17) 'subject_ids[17]': "${topicsAPI[17].subject_id}",
+      if(topicsAPI.length > 17) 'grades_from[17]': "${topicsAPI[17].grades_from}",
+      if(topicsAPI.length > 17) 'grades_to[17]': "${topicsAPI[17].grades_to}",
+      if(topicsAPI.length > 17) 'main_subjects[17]': "${topicsAPI[17].main_subject}",
+
+      if(topicsAPI.length > 18) 'subject_ids[18]': "${topicsAPI[18].subject_id}",
+      if(topicsAPI.length > 18) 'grades_from[18]': "${topicsAPI[18].grades_from}",
+      if(topicsAPI.length > 18) 'grades_to[18]': "${topicsAPI[18].grades_to}",
+      if(topicsAPI.length > 18) 'main_subjects[18]': "${topicsAPI[18].main_subject}",
+
+      if(topicsAPI.length > 19) 'subject_ids[19]': "${topicsAPI[19].subject_id}",
+      if(topicsAPI.length > 19) 'grades_from[19]': "${topicsAPI[19].grades_from}",
+      if(topicsAPI.length > 19) 'grades_to[19]': "${topicsAPI[19].grades_to}",
+      if(topicsAPI.length > 19) 'main_subjects[19]': "${topicsAPI[19].main_subject}",
+
+      if(topicsAPI.length > 20) 'subject_ids[20]': "${topicsAPI[20].subject_id}",
+      if(topicsAPI.length > 20) 'grades_from[20]': "${topicsAPI[20].grades_from}",
+      if(topicsAPI.length > 20) 'grades_to[20]': "${topicsAPI[20].grades_to}",
+      if(topicsAPI.length > 20) 'main_subjects[20]': "${topicsAPI[20].main_subject}",
+
+      if(topicsAPI.length > 21) 'subject_ids[21]': "${topicsAPI[21].subject_id}",
+      if(topicsAPI.length > 21) 'grades_from[21]': "${topicsAPI[21].grades_from}",
+      if(topicsAPI.length > 21) 'grades_to[21]': "${topicsAPI[21].grades_to}",
+      if(topicsAPI.length > 21) 'main_subjects[21]': "${topicsAPI[21].main_subject}",
+
+      if(topicsAPI.length > 22) 'subject_ids[22]': "${topicsAPI[22].subject_id}",
+      if(topicsAPI.length > 22) 'grades_from[22]': "${topicsAPI[22].grades_from}",
+      if(topicsAPI.length > 22) 'grades_to[22]': "${topicsAPI[22].grades_to}",
+      if(topicsAPI.length > 22) 'main_subjects[22]': "${topicsAPI[22].main_subject}",
+
+      if(topicsAPI.length > 23) 'subject_ids[23]': "${topicsAPI[23].subject_id}",
+      if(topicsAPI.length > 23) 'grades_from[23]': "${topicsAPI[23].grades_from}",
+      if(topicsAPI.length > 23) 'grades_to[23]': "${topicsAPI[23].grades_to}",
+      if(topicsAPI.length > 23) 'main_subjects[23]': "${topicsAPI[23].main_subject}",
+
+      if(topicsAPI.length > 24) 'subject_ids[24]': "${topicsAPI[24].subject_id}",
+      if(topicsAPI.length > 24) 'grades_from[24]': "${topicsAPI[24].grades_from}",
+      if(topicsAPI.length > 24) 'grades_to[24]': "${topicsAPI[24].grades_to}",
+      if(topicsAPI.length > 24) 'main_subjects[24]': "${topicsAPI[24].main_subject}",
+
 
 
 
@@ -1856,7 +2455,7 @@ class _StepperScreenState extends State<StepperScreen> {
         // _emergencyNumberTextController.text.isNotEmpty &&
         _phoneTextController.text.isNotEmpty &&
         _emailTextController.text.isNotEmpty &&
-         _addressTextController.text.isNotEmpty &&
+         // _addressTextController.text.isNotEmpty &&
         // _previousWorkTextController.text.isNotEmpty &&
         // _previousWorkPlaceTextController.text.isNotEmpty &&
         _skillsTextController.text.isNotEmpty &&
