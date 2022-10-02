@@ -73,3 +73,66 @@ class MyTextField extends StatelessWidget {
     );
   }
 }
+
+
+class MyTextFieldMultiline extends StatelessWidget {
+  final TextEditingController controller;
+  final bool isRequired;
+  final String label;
+  final String? helperText ;
+  final Widget? suffixIcon ;
+
+  MyTextFieldMultiline({
+    required this.controller,
+    required this.label,
+    required this.isRequired,
+    this.helperText,
+    this.suffixIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      keyboardType: TextInputType.multiline,
+      minLines: 1,//Normal textInputField will be displayed
+      maxLines: 5,// when user presses enter it will adapt to it
+      controller: controller,
+      cursorColor: Color.fromARGB(200, 204, 185, 155),
+      // minLines: minLine,
+      // maxLines: maxLine,
+      style: TextStyle(
+        fontSize: MediaQuery.of(context).size.height * 0.018,
+        // color: Colors.grey.shade300,
+      ),
+      textAlign: TextAlign.start,
+      decoration: InputDecoration(
+        suffixIcon: suffixIcon,
+        isDense: true,
+        contentPadding: EdgeInsets.symmetric(vertical: 10.0 , horizontal: 10),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: Color.fromARGB(200, 204, 185, 155),
+              // color:  Colors.grey.shade300,
+              width: 2,
+            )),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(
+              color: Color.fromARGB(200, 204, 185, 155),
+              width: 2,
+            )),
+        helperText:helperText ,
+
+        // label: Text(
+        //   label,
+        //   style: GoogleFonts.poppins(),
+        // ),
+        hintText:isRequired ? "${label} * " :"${label}",
+        labelStyle: TextStyle(color: Color(0xff212121)),
+        filled: true,
+        // focusColor: Colors.red.shade300,
+      ),
+    );
+  }
+}

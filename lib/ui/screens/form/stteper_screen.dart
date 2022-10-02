@@ -656,24 +656,22 @@ class _StepperScreenState extends State<StepperScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                MyTextField(
+                MyTextFieldMultiline(
                   isRequired: true,
                   controller: _skillsTextController,
                   label: UiUtils.getTranslatedLabel(
                       context, talkAboutYourSkillsKey),
-                  minLine: 5,
-                  maxLine: 10,
+                  // minLine: 5,
+                  // maxLine: 10,
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                MyTextField(
+                MyTextFieldMultiline(
                   isRequired: true,
                   controller: _experienceWorkTextController,
                   label: UiUtils.getTranslatedLabel(
                       context, talkAboutYourExperienceKey),
-                  minLine: 5,
-                  maxLine: 10,
                 ),
               ],
             )),
@@ -1793,7 +1791,7 @@ class _StepperScreenState extends State<StepperScreen> {
           dismissDirection: DismissDirection.horizontal,
           backgroundColor: Colors.red,
           content: Text(
-            '${registerTeacher.message}',
+            UiUtils.getTranslatedLabel(context, enterRequiredData),
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -1801,13 +1799,40 @@ class _StepperScreenState extends State<StepperScreen> {
       }else {
         // EasyLoading.showSuccess("${registerTeacher.message}") ;
         _dissmisLoadingDialog();
-        Navigator.of(context).pushReplacementNamed(Routes.login);
+
+           loginDialog();
+
+        // Navigator.of(context).pushReplacementNamed(Routes.login);
       }
     }
     else {
       _dissmisLoadingDialog();
       print(response.reasonPhrase);
     }
+  }
+  void loginDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+          UiUtils.getTranslatedLabel(
+              context, successfullyRegistrationTitleKey),
+        ),
+        content: Text(
+          UiUtils.getTranslatedLabel(
+              context, successfullyRegistrationKey),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(Routes.login);
+            },
+            child: Text(
+                UiUtils.getTranslatedLabel(context, okKey)),
+          ),
+        ],
+      ),
+    );
   }
 
   bool _images() {
